@@ -13,7 +13,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
-    description='A Django extension that defines a Service pattern.',
+    description='A Django extension that defines a Service pattern, to reuse business logic in different endpoints.',
     long_description=README,
     url='https://serioese.gmbh/',
     author='Simon Welker',
