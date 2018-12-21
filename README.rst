@@ -2,6 +2,8 @@
 Serious Django: Services
 ========================
 
+https://github.com/serioeseGmbH/serious-django-services
+
 serious-django-services defines a Service pattern for Django.
 
 What a Service does is abstracting operations (first and foremost: operations on models)
