@@ -15,7 +15,7 @@ can throw. If you don't have any of those for your serivce, make sure to just se
 Otherwise you'll get an error on the definition of the class, to enforce being explicit about which
 exceptions your Service can throw.
 
----
+--------------------------------------------------------------------------------
 
 In this package, we just define a ``Service`` base class that you need to inherit to write your own
 services. Here's a toy example::
@@ -63,15 +63,19 @@ logic needs to ever know about your closing hours or that some customers can be 
 Quick start
 -----------
 
-1. Add "serious_django_services" to your INSTALLED_APPS setting like this::
+1. Install the package with pip::
+
+    pip install serious-django-services
+
+2. Add "serious_django_services" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [
         ...
         'serious_django_services',
     ]
 
-2. Import ``serious_django_services.Service`` and subclass it for each Service you want to define.
+3. Import ``serious_django_services.Service`` and subclass it for each Service you want to define.
 
-3. Define the operations you need on your service, each as a ``@classmethod``.
+4. Define the operations you need on your service, each as a ``@classmethod``.
 
-4. Use your Service's operations in your view-level code.
+5. Use your Service's operations in your view-level code.
