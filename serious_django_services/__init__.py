@@ -37,7 +37,7 @@ class Service(ABC, metaclass=ServiceMetaclass):
     base_exceptions = (PermissionDenied,)
 
     @classmethod
-    def require_permissions(cls, user, permissions):
+    def require_permissions(cls, user, permissions, obj=None):
         """
         Checks if:
         1. the given user is signed in (i.e. not None and not anonymous)
@@ -48,12 +48,15 @@ class Service(ABC, metaclass=ServiceMetaclass):
         :param permissions: One permission or a list of permissions that the
             user is expected to have. Should all have the Permission type
             defined in this file.
+        :param obj: If obj is passed in, this method won’t check for permissions for the model,
+                    but for the specific object. (Only if you use an external library like django-guardian)
+
         """
         cls.require_signed_in(user)
         if not isinstance(permissions, collections.Iterable):
             permissions = [permissions]
         for permission in permissions:
-            if not user.has_perm(permission):
+            if not user.has_perm(permission, obj=obj):
                 raise PermissionDenied(
                     _("You do not have permission '{perm}'.").format(
                         perm=str(permission)
