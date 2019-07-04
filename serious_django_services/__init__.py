@@ -213,3 +213,10 @@ class CRUDMixin(ABC, metaclass=CRUDMixinMetaclass):
         model_instance_to_be_deleted.delete()
 
         return True
+
+
+class NotPassed:
+    """
+    A default value for named args not being passed to the function.
+    """
+    pass
