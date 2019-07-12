@@ -3,8 +3,8 @@ from django.core.exceptions import ImproperlyConfigured
 
 from serious_django_services import Service, CRUDMixin
 
-from test_app.models import Foo
-from test_app.forms import CreateFooForm, UpdateFooForm
+from tests.models import Foo
+from tests.forms import CreateFooForm, UpdateFooForm
 
 
 class CRUDMixinTest(TestCase):
