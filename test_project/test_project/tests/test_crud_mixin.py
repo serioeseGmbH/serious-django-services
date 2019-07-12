@@ -1,5 +1,4 @@
-from unittest import TestCase
-
+from django.test import TestCase
 from django.core.exceptions import ImproperlyConfigured
 
 from serious_django_services import Service, CRUDMixin
