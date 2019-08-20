@@ -48,3 +48,4 @@ class CRUDMixinTest(TestCase):
                 create_form = CreateFooForm
                 update_form = UpdateFooForm
         self.assertIn(expected_error_message, str(e.exception))
+

@@ -145,6 +145,9 @@ class CRUDMixin(ABC, metaclass=CRUDMixinMetaclass):
         :raise ValidationError: If the form validations fails
         :return: The newly created instance of cls.model
         """
+        data = {k: v for k, v in data.items() if v != NotPassed}
+        file_data = file_data or {}
+        file_data = {k: v for k, v in file_data.items() if v != NotPassed}
         bound_form = cls.create_form(data, file_data)
 
         if bound_form.is_valid():
@@ -182,16 +185,16 @@ class CRUDMixin(ABC, metaclass=CRUDMixinMetaclass):
         :raise TypeError: If no id is passed
         :return: The updated instance of cls.model
         """
+        data = {k: v for k, v in data.items() if v != NotPassed}
+        file_data = file_data or {}
+        file_data = {k: v for k, v in file_data.items() if v != NotPassed}
+
         model_instance_to_be_updated = cls.model.objects.get(id=id)
 
-        updated_model_data = dict(model_to_dict(model_instance_to_be_updated),
-                                  **data)
-        updated_model_file_data = dict(model_to_dict(model_instance_to_be_updated),
-                                       **file_data if file_data else {})
+        updated_model_data = {**model_to_dict(model_instance_to_be_updated), **data}
+        updated_model_file_data = {**model_to_dict(model_instance_to_be_updated), **(file_data if file_data else {})}
 
-        bound_form = cls.update_form(updated_model_data,
-                                     updated_model_file_data,
-                                     instance=model_instance_to_be_updated)
+        bound_form = cls.update_form(updated_model_data, updated_model_file_data, instance=model_instance_to_be_updated)
 
         if bound_form.is_valid():
             return bound_form.save()
